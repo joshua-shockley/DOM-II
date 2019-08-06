@@ -48,22 +48,47 @@ btns.forEach(clickity => {
 })
 
 //#6 using USING GREENSOCK EXAMPLE FROM EARLIER
-const pics = document.querySelectorAll('div.img-content');
+const pics = document.querySelectorAll('.img-content');
 pics.forEach(getBig => {
-    getBig.addEventListener('mouseover', (e) => {
-            console.log(`is it bigger yet?`);
-            TweenMax.to(e.target, 1, {
-                scale: 1.3,
-                filter: 'none',
-                ease: Elastic.easeOut.config(1, 0.75)
+        getBig.addEventListener('mouseover', (e) => {
+
+                TweenMax.to(e.target, 1, {
+                    scale: 1.3,
+                    ease: Elastic.easeOut.config(1, 0.75)
+                })
+                console.log(`is it bigger yet?`);
             })
-        })
-        //#7
-    getBig.addEventListener('mouseleave', (e) => {
-        console.log(`and now it's small again...lol!`)
-        TweenMax.to(e.target, 0.5, {
-            scale: 0.8,
-            ease: Power1.easeIn
+            //#7
+        getBig.addEventListener('mouseleave', (e) => {
+            TweenMax.to(e.target, 0.5, {
+                scale: 0.8,
+                ease: Power1.easeIn
+            })
+            console.log(`and now it's small again...lol!`);
         })
     })
-})
+    //#8
+const theNav = document.querySelectorAll('a');
+theNav.forEach(newLook => {
+        newLook.addEventListener('mouseover', (e) => {
+                console.log(`look at em go!!`);
+                TweenMax.to(e.target, 1, { scale: 1.5, ease: Elastic.easeOut, yoyoEase: Power2.easeOut, repeat: 1, repeatDelay: 0.2 })
+                e.target.style.background = "yellow";
+            })
+            //#9
+        newLook.addEventListener('mouseleave', (e) => {
+            e.target.style.background = "white";
+        })
+    })
+    //#10
+const logoSwirl = document.querySelector('.logo-heading');
+
+window.addEventListener('load', () => {
+    TweenMax.to(logoSwirl, 1, {
+        rotation: 360,
+        ease: Elastic.easeOut.config(1, 0.75)
+    })
+});
+
+const atTheTop = document.querySelector('div.nav-container');
+// atTheTop.addEventListener()

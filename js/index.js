@@ -34,6 +34,7 @@ smallerTitlesC.forEach(littleColor => {
         console.log(`this littles is complete`);
         e.target.style.color = "black";
         e.target.style.background = "white";
+        e.target.stopPropagation()
     })
 
 })
@@ -70,17 +71,19 @@ pics.forEach(getBig => {
     //#8
 const theNav = document.querySelectorAll('a');
 theNav.forEach(newLook => {
-        newLook.addEventListener('mouseover', (e) => {
-                console.log(`look at em go!!`);
-                TweenMax.to(e.target, 1, { scale: 1.5, ease: Elastic.easeOut, yoyoEase: Power2.easeOut, repeat: 1, repeatDelay: 0.2 })
-                e.target.style.background = "yellow";
-            })
-            //#9
-        newLook.addEventListener('mouseleave', (e) => {
-            e.target.style.background = "white";
+    newLook.addEventListener('mouseover', (e) => {
+            console.log(`look at em go!!`);
+            TweenMax.to(e.target, 1, { scale: 1.5, ease: Elastic.easeOut, yoyoEase: Power2.easeOut, repeat: 1, repeatDelay: 0.2 })
+            e.target.style.background = "yellow";
         })
+        //#9
+    newLook.addEventListener('mouseleave', (e) => {
+        e.target.style.background = "white";
     })
-    //#10
+})
+
+
+//#10
 const logoSwirl = document.querySelector('.logo-heading');
 
 window.addEventListener('load', () => {
@@ -88,7 +91,14 @@ window.addEventListener('load', () => {
         rotation: 360,
         ease: Elastic.easeOut.config(1, 0.75)
     })
-});
+})
 
-const atTheTop = document.querySelector('div.nav-container');
-// atTheTop.addEventListener()
+//using preventDefault()
+const noReload = document.querySelectorAll('.nav-link');
+noReload.forEach(stopReload => {
+    stopReload.addEventListener('click', (e) => {
+        // console.log(`should be working`);
+        e.preventDefault()
+        alert("Was preventDefault() called:" + e.defaultPrevented);
+    });
+});
